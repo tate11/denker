@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+            <record id="view_denker_invoice_to_stock_picking" model="ir.ui.view">
+            <field name="name">account.invoice.stock.picking</field>
+            <field name="model">stock.picking</field>
+            <!--<field name="inherit_id" ref="delivery.view_picking_withcarrier_out_form"/>-->
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='extra']" position="inside">
+                    <group>
+                        <field name="group_name" invisible="1"/>
+                        <field name="invoice_id" readonly="0" options="{'no_create': True}"
+                            domain = "[('type', '=', 'out_invoice'),('state', '!=', 'cancel'), ('origin', '=', group_name)]"
+                            />
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

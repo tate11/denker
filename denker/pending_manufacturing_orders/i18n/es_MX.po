@@ -1,0 +1,49 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * pending_manufacturing_orders
+#
+# Translators:
+# José Candelas <jcandelas@gmail.com>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-19 18:37+0000\n"
+"PO-Revision-Date: 2017-12-19 18:37+0000\n"
+"Last-Translator: José Candelas <jcandelas@gmail.com>, 2017\n"
+"Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: pending_manufacturing_orders
+#: field:mrp.production,production_planned_end:0
+msgid "Production Planned End"
+msgstr "Teimpo Entrega Prod"
+
+#. module: pending_manufacturing_orders
+#: model:ir.model,name:mrp_production.production_delivery_time
+msgid "Prod Delivery Date"
+msgstr "Tiempo Entrega prod"
+
+#. module: pending_manufacturing_orders
+#: help:ir.model,name:mrp_production.comments
+msgid "Comments"
+msgstr "Comentarios"
+
+#. module: pending_manufacturing_orders
+#: field:mrp.production,comments:0
+msgid "Comments"
+msgstr "Comentarios"
+
+#. module: pending_manufacturing_orders
+#: model:ir.model.fields,name:production_planned_end
+msgid "Production Planned End"
+msgstr "Tiempo Entrega Prod"
+
+#. module: pending_manufacturing_orders
+#: model:ir.model.fields,field_description:pending_manufacturing_orders.field_sale_calculated_production_date
+msgid "Calculated Production Date"
+msgstr "Fecha de Producción Calculada"

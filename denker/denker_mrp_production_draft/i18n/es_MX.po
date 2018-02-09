@@ -1,0 +1,4 @@
+#. module: denker_mrp_production_draft
+#: model:ir.model.fields,field_description:denker_mrp_production_draft.field_mrp_production_draft_name
+msgid "Draft Name"
+msgstr "Nombre Borrador"

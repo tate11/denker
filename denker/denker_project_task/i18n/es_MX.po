@@ -1,0 +1,19 @@
+#. module: denker_project_task
+#: model:ir.model.fields,field_description:denker_project_task.field_project_task_requestor
+msgid "Requestor"
+msgstr "Quién Pidió"
+
+#. module: denker_project_task
+#: model:ir.model.fields,field_description:denker_project_task.field_project_task_real_end_date
+msgid "Real End Date"
+msgstr "Fecha Real Entrega"
+
+#. module: denker_project_task
+#: model:ir.model.fields,field_description:denker_project_task.field_project_task_evidence
+msgid "Evidence"
+msgstr "Evidencia"
+
+#. module: denker_project_task
+#: model:ir.model.fields,field_description:denker_project_task.field_project_task_categ_id
+msgid "Category"
+msgstr "Categoría"

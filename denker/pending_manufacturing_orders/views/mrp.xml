@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+        <!-- Manufacturing Order Form -->
+        <record id="view_manufacturing_order_form" model="ir.ui.view">
+            <field name="name">mrp.production.form</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+            <field name="arch" type="xml">
+                <field name="routing_id" position="after">
+                    <field name="production_planned_end" class="oe_inline"/>
+		    						<field name="sale_order_line_delivery_date" class="oe_inline"/>
+										<field name="sale_calculated_production_date"/>
+										<field name="comments" class="oe_inline"/>
+										<field name="embroidery" class="oe_inline"/>
+                </field>
+								<field name="company_id" position="after">
+										<field name="customer" class="oe_inline"/>
+								</field>
+            </field>
+        </record>
+
+				<!-- Manufacturing Order Tree -->
+        <record id="view_manufacturing_order_tree" model="ir.ui.view">
+            <field name="name">mrp.production.tree.report</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
+            <field name="arch" type="xml">
+							  <!-- NEW -->
+								<xpath expr="//tree" position="replace">
+									<tree decoration-bf="message_needaction==True" default_order="date_planned_start desc" decoration-info="state=='confirmed'" decoration-danger="date_planned_start&lt;current_date and state not in ('done','cancel')" decoration-muted="state in ('done','cancel')" string="Manufacturing Orders">
+										<field name="create_date"/>
+										<!--<field name="date_planned_start"/>-->
+									  	<field name="production_planned_end"/>
+										<field name="sale_calculated_production_date"/>
+										<field name="message_needaction" invisible="1"/>
+										<field name="name"/>
+										<field name="date_planned_start" invisible="1"/>
+										<field name="product_default_code"/>
+
+										<field name="embroidery"/>
+
+										<field name="pending_produce_qty" sum="Pending Qty" digits="(14, 0)" style="text-align:right;"/>
+										<field name="product_qty" sum="Total Qty" string="Quantity" digits="(14, 0)" style="text-align:right;"/>
+										<field name="availability"/>
+										<field name="state"/>
+										<field name="routing_id"/>
+										<field name="origin"/>
+										<field name="sales_team"/>
+										<field name="sale_order_create_date"/>
+										<field name="sale_order_line_delivery_date"/>
+
+										<field name="capture_days"/>
+
+
+										<!-- <field name="sale_order_delivery_date"/> -->
+
+										<!--<field name="comments"/>
+										<field name="customer"/>-->
+
+
+
+
+										<!-- <field name="product_family"/> -->
+									</tree>
+								</xpath>
+
+								<!-- ORIGINAL
+										<field name="message_needaction" invisible="1"/>
+                    <field name="name"/>
+                    <field name="date_planned_start"/>
+                    <field name="product_id"/>
+                    <field name="product_qty" sum="Total Qty" string="Quantity"/>
+                    <field name="product_uom_id" string="Unit of Measure" options="{'no_open':True,'no_create':True}" groups="product.group_uom"/>
+                    <field name="availability"/>
+                    <field name="routing_id" groups="mrp.group_mrp_routings"/>
+                    <field name="origin"/>
+                    <field name="state"/>
+								-->
+            </field>
+        </record>
+				<record id="mrp_production_view_search_inherit_product_family" model="ir.ui.view">
+		        <field name="name">mrp.production.search.view.inherit.product.family</field>
+		        <field name="model">mrp.production</field>
+		        <field name="inherit_id" ref="mrp.view_mrp_production_filter"/>
+		        <field name="arch" type="xml">
+		            <filter name="planned" position="before">
+						<filter string="Product Family" domain="[]" context="{'group_by':'product_family'}"/>
+						<filter string="Prod Delivery Date" domain="[]" context="{'group_by':'production_planned_end:day'}" />
+		            </filter>
+					<xpath expr="//search/group" position="inside">
+						<filter string="Scheduled Day" domain="[]" context="{'group_by':'date_planned_start:day'}" help="Scheduled Date by Day"/>
+						<filter string="Prod Delivery Date Month" domain="[]" context="{'group_by':'production_planned_end:month'}" />
+						<filter string="Prod Delivery Date Week" domain="[]" context="{'group_by':'production_planned_end:week'}" />
+						<filter string="Prod Delivery Date Day" domain="[]" context="{'group_by':'production_planned_end:day'}" />
+					</xpath>
+		        </field>
+		    </record>
+
+	</data>
+</openerp>

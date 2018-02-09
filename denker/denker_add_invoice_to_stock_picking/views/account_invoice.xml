@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+        <!-- Account Invoice -->
+        <record id="view_addto_invoice_tracking_ref" model="ir.ui.view">
+            <field name="name">view_addto_invoice_tracking_ref</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <field name="move_id" position="after">
+                        <field name="carrier_tracking_ref"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

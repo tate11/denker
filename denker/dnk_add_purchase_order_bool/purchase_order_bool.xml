@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="view_denker_patner" model="ir.ui.view">
+            <field name="name">res.partner.denker.order.bool</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <field name="user_id" position="after">
+                    <field name="customer_purchase_order_bool"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

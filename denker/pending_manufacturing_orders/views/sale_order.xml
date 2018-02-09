@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+        <!-- Account Journal -->
+        <record id="view_sale_order_line_form" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+							<xpath expr="//field[@name='order_line']/form/field[@name='name']" position="after" >
+								<div>
+										<label for="comments"/>
+                    <field name="comments"/>
+								</div>
+								<div>
+										<label for="embroidery"/>
+										<field name="embroidery"/>
+								</div>
+							</xpath>
+            </field>
+        </record>
+	</data>
+</openerp>

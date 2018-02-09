@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+
+        <record id="view_denker_patner" model="ir.ui.view">
+            <field name="name">res.partner.denker.partner</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="groups_id" eval="[(4, ref('account.group_account_invoice'))]"/>
+            <field name="arch" type="xml">
+                <field name="property_account_position_id" position="after">
+                    <field name="metodo_pago_id" String="Método de Pago"/>
+                </field>
+                <field name="metodo_pago_id" position="after">
+                    <field name="uso_cfdi_id" String="Uso CFDI"/>
+                </field>
+                <field name="pay_method_id" position="attributes">
+                    <attribute name="string">Forma de Pago</attribute>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

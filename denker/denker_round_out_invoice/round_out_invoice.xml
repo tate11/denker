@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="view_denker_round_out_invoice" model="ir.ui.view">
+            <field name="name">account.invoice.denker.round.out.invoice</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='amount_untaxed']" position="replace">
+                    <field  name="amount_untaxed" digits="(0,2)" />
+                </xpath>
+                <xpath expr="//field[@name='amount_tax']" position="replace">
+                    <field  name="amount_tax" digits="(0,2)" />
+                </xpath>
+                <xpath expr="//field[@name='amount_total']" position="replace">
+                    <field  name="amount_total" digits="(0,2)" class="oe_subtotal_footer_separator" />
+                </xpath>
+                <xpath expr="//field[@name='residual']" position="replace">
+                    <field  name="residual" digits="(0,2)" class="oe_subtotal_footer_separator" attrs="{'invisible': [('state', '=', 'draft')]}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

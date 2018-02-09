@@ -1,0 +1,9 @@
+#. module: invoice_cancel_group
+#: model:res.groups,name:group_account_invoice_cancel
+msgid "Cancel Customer Invoices"
+msgstr "Cancelar Facturas de Clientes"
+
+#. module: argil_invoice_cancel
+#: model:ir.ui.view,arch_db:argil_invoice_cancel.view_invoice_cancel_argil
+msgid "Cancel Invoice"
+msgstr "Cancelar Factura"

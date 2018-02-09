@@ -1,0 +1,4 @@
+#. module: refund_invoice_group
+#: model:res.groups,name:group_account_refund_invoice
+msgid "Refund Customer Invoices"
+msgstr "Notas de Crédito de Clientes"

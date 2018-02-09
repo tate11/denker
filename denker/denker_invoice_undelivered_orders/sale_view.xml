@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+
+        <record model="ir.ui.view" id="invoice_undelivered_orders">
+            <field name="name">invoice_undelivered_orders</field>
+            <field name="model">denker.invoice.undelivered.orders</field>
+            <field name="priority">1</field>
+            <field name="arch" type="xml">
+                <tree string="Invoice Undelivered">
+                    <field name="sale_order"/>
+                    <field name="date_order"/>
+                    <field name="invoices"/>
+                    <field name="product_family"/>
+                    <field name="sol_product_name"/>
+                    <field name="order_line_qty"/>
+                    <field name="qty_invoiced"/>
+                    <field name="qty_delivered"/>
+                    <field name="product_price"/>
+                    <field name="currency_name"/>
+                    <field name="company_name" invisible='1'/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="pending_sale_report_form_view" model="ir.ui.view">
+            <field name="name">undelivered_orders_report_form_view</field>
+            <field name="model">denker.invoice.undelivered.orders</field>
+            <field name="arch" type="xml">
+                <form string="Invoice Undelivered Orders" create="false" edit="false">
+                <sheet>
+                </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- FILTERS -->
+        <record id="sale_order_line_filter_view" model="ir.ui.view">
+            <field name="name">sale_order_line_filter_view</field>
+                <field name="model">denker.invoice.undelivered.orders</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="sale_order"/>
+                    <field name="date_order"/>
+                    <field name="invoices"/>
+                    <field name="product_family"/>
+                    <field name="sol_product_name"/>
+                    <field name="order_line_qty"/>
+                    <field name="qty_invoiced"/>
+                    <field name="qty_delivered"/>
+                    <field name="product_price"/>
+                    <field name="currency_name"/>
+                    <field name="company_name" />
+                </search>
+            </field>
+        </record>
+
+
+        <!-- ACCION -->
+        <record id="menu_invoice_undelivered_orders_action" model="ir.actions.act_window">
+            <field name="name">Invoice Undelivered Orders</field>
+            <field name="res_model">denker.invoice.undelivered.orders</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <!--<field name="search_view_id" ref="view_order_form"/>-->
+            <!--<field name="context">{'group_by':'company_name:day'}</field>-->
+            <!--<field name="domain"> ['|',('dnk_invoice_undelivered_orders.company_id','=',[res_users.company_id]),('company_id','=',False)]</field>-->
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+
+              </p>
+            </field>
+        </record>
+
+
+        <!-- MENUS -->
+        <!-- <menuitem name="Ruteo de albaranes" id="menu_vpicktree2_action" parent="stock.menu_stock_warehouse_mgmt" action="vpicktree2_action" sequence="10" groups="raloy_carta_porte.carta_porte_lectura"/> -->
+
+        <menuitem name="-Invoice Undelivered Orders" id="menu_invoice_undelivered_orders" parent="sales_team.menu_sale_report" action="menu_invoice_undelivered_orders_action" sequence="12" />
+
+    </data>
+</openerp>

@@ -1,0 +1,168 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+
+        <record model="ir.ui.view" id="dnk_pending_sale_report_money">
+            <field name="name">dnk_pending_sale_report_money</field>
+            <field name="model">sale.order.line</field>
+            <field name="priority">1</field>
+            <field name="arch" type="xml">
+                <tree string="Order Lines"
+                fonts="bold:text_bold==True;bold:product_delivery_date&lt;current_date;"
+                colors="black:text_color=='black';blue:text_color=='blue';green:text_color=='green';orange:text_color=='orange';red:product_delivery_date&lt;current_date;"
+                create="false" edit="false" >
+                    <field name="text_bold" invisible="1"/>
+                    <field name="text_color" invisible="1"/>
+                    <field name="supply_filter" invisible="1"/>
+                    <field name="days_to_date" invisible='1'/>
+                    <field name="late" invisible='1'/>
+                    <field name="date_order"/>
+                    <field name="product_delivery_date" string="Fecha de Entrega"/>
+                    <field name="order_partner_id"/>
+                    <field name="order_id" string="SO"/>
+                    <field name="client_order_ref"/>
+                    <field name="product_id"/>
+                    <field name="delivery_status"/>
+                    <field name="remaining_qty" sum="Total Cantidad"/>
+                    <field name="price_order_line_usd" sum="Total USD" groups="__export__.res_groups_187"/>
+                    <field name="price_order_line" sum="Total MXN" groups="__export__.res_groups_187"/>
+                    <field name="remaining_qty" invisible='1'/>
+                    <field name="salesman_id"/>
+                    <field name="state" invisible='1'/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="dnk_pending_sale_report_money_form_view" model="ir.ui.view">
+            <field name="name">dnk_pending_sale_report_money_form_view</field>
+            <field name="model">sale.order.line</field>
+            <field name="arch" type="xml">
+                <form string="Pending Order Line" create="false" edit="false">
+                <sheet>
+                    <group colspan="4">
+                        <group col="2">
+                            <field name="order_id"/>
+                            <field name="order_partner_id"/>
+                            <field name="state" invisible='1'/>
+                            <field name="delivery_days"/>
+                            <field name="date_order"/>
+                            <field name="commitment_date"/>
+
+                            <field name="client_order_ref"/>
+                            <field name="date_last_mail"/>
+                            <field name="mail_qty"/>
+                            <field name="salesman_id"/>
+                        </group>
+                        <group col="2">
+                            <field name="product_id"/>
+                            <field name="qty_delivered"/>
+                            <field name="remaining_qty"/>
+                            <field name="int_product_qty"/>
+                            <field name="mo_stock_diff"/>
+                        </group>
+                    </group>
+
+                    <group colspan="4">
+                        <group col="2">
+                            <field name="manufacturing_order"/>
+                            <field name="mo_date_start"/>
+                            <field name="mo_date_end"/>
+                        </group>
+                    </group>
+
+                    <group colspan="4">
+                        <group col="2">
+                            <!--<field name="mo_source"/>-->
+                            <!--<field name="mo_source_stock"/>-->
+                        </group>
+                        <group col="2">
+                            <!--<field name="mo_dest"/>-->
+                            <!--<field name="mo_dest_stock"/>-->
+                        </group>
+                    </group>
+                </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- FILTERS -->
+        <record id="sale_order_line_money_filter_view" model="ir.ui.view">
+            <field name="name">dnk_pending_sale_report_money_filter_view</field>
+            <field name="model">sale.order.line</field>
+            <field name="arch" type="xml">
+                <search>
+                    <filter string="Surtido" name="supply_filter" domain="[('supply_filter', '=', True)]"/>
+                    <field name="order_partner_id"/>
+                    <field name="product_id"/>
+                    <field name="sales_team"/>
+                    <field name="product_family"/>
+                    <field name="order_id"/>
+                    <field name="delivery_days"/>
+                    <field name="date_order"/>
+                    <field name="commitment_date"/>
+
+                    <field name="client_order_ref"/>
+
+                    <field name="date_last_mail"/>
+                    <field name="mail_qty"/>
+                    <field name="salesman_id"/>
+                    <field name="qty_delivered"/>
+                    <field name="product_uom_qty"/>
+                    <field name="int_product_qty"/>
+
+                    <!--<group expand="0" string="Group By..." >
+                        <filter string="Order" name="group_order_id" icon="terp-personal" domain="[]" context="{'group_by':'order_id'}"/>
+
+                    </group>-->
+                </search>
+            </field>
+        </record>
+
+        <record id="sale_order_line_view_graph" model="ir.ui.view">
+          <field name="name">dnk_pending_sale_report_money_view_graph</field>
+          <field name="model">sale.order.line</field>
+          <field name="arch" type="xml">
+            <graph type="pivot">
+              <field name="sales_team" type="row" />
+              <field name="product_delivery_date" interval="month" type="col" />
+            </graph>
+          </field>
+        </record>
+
+        <record id="sale_order_line_view_pivot" model="ir.ui.view">
+          <field name="name">dnk_pending_sale_report_money_view_pivote</field>
+          <field name="model">sale.order.line</field>
+          <field name="arch" type="xml">
+            <pivot string="Pending Sale Report Money">
+              <field name="sales_team" type="col" />
+              <field name="product_delivery_date" interval="month" type="row" />
+            </pivot>
+          </field>
+        </record>
+
+        <!-- ACCION -->
+        <record id="menu_dnk_pending_sale_report_money_action" model="ir.actions.act_window">
+            <field name="name">Pending Sale Orders Money</field>
+            <field name="res_model">sale.order.line</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,graph,pivot</field>
+            <field name="view_id" ref="dnk_pending_sale_report_money"/>
+            <field name="context">{'search_default_group_order_id': 1}</field>
+            <field name="domain">[('state','in',('expedition', 'sale','auth_expedition')),('remaining_qty','>',0)]</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+
+              </p>
+            </field>
+        </record>
+
+        <!-- MENUS -->
+        <!-- <menuitem name="Ruteo de albaranes" id="menu_vpicktree2_action" parent="stock.menu_stock_warehouse_mgmt" action="vpicktree2_action" sequence="10" groups="raloy_carta_porte.carta_porte_lectura"/> -->
+
+        <menuitem name="-Pending Sale Orders Money" id="menu_dnk_pending_sale_report_money" parent="sales_team.menu_sale_report" action="menu_dnk_pending_sale_report_money_action" sequence="11" />
+
+    </data>
+</openerp>
