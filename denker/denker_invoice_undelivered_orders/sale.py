@@ -19,7 +19,7 @@ class InvoiceUndelivered(models.Model):
                 SELECT
                     row_number() over (order by SO.id) AS id,
                     SO.name AS sale_order,
-                    AI.invoices AS invoices, SO.date_order::date AS date_order,
+                    AI.invoices AS invoices, AI.last_invoice_date, SO.date_order::date AS date_order,
                     PCP.name AS product_family, SOL.name AS sol_product_name,
                     SOL.state AS sale_order_line_state,
                     SOL.product_uom_qty AS order_line_qty,   SOL.qty_invoiced, SOL.qty_delivered,
@@ -28,7 +28,7 @@ class InvoiceUndelivered(models.Model):
                     SOL.company_id AS company_id, C.name AS company_name
                     FROM sale_order SO LEFT JOIN sale_order_line SOL ON  SO.id = SOL.order_id
                     INNER JOIN
-                        (SELECT origin, string_agg(number, ' | ') AS invoices
+                        (SELECT origin, string_agg(number, ' | ') AS invoices, MAX(date_invoice) AS last_invoice_date
                             FROM account_invoice
                             WHERE type IN ('out_invoice') AND state IN ('paid', 'open') GROUP BY origin)
                     AS AI ON AI.origin = SO.name
@@ -40,11 +40,12 @@ class InvoiceUndelivered(models.Model):
                     INNER JOIN res_currency CUR ON CUR.id = PL.currency_id
                     INNER JOIN res_company C ON C.id = SOL.company_id
                     WHERE SOL.qty_invoiced  <> SOL.qty_delivered
-		    AND SO.state NOT IN ('cancel')
+                    AND SO.state NOT IN ('cancel')
             )""")
     sale_order = fields.Char("SO", readonly=True)
     date_order = fields.Date("Date Order", readonly=True)
     invoices = fields.Char("Invoices", readonly=True)
+    last_invoice_date = fields.Date("Last Invoice Date", readonly=True)
     product_family = fields.Char("Product Family", readonly=True)
     order_line_qty = fields.Integer("To Invoice", readonly=True)
     qty_invoiced = fields.Integer("Invoiced", readonly=True)

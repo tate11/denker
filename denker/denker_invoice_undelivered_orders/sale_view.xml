@@ -43,6 +43,7 @@
                     <field name="sale_order"/>
                     <field name="date_order"/>
                     <field name="invoices"/>
+                    <field name="last_invoice_date"/>
                     <field name="product_family"/>
                     <field name="sol_product_name"/>
                     <field name="order_line_qty"/>
