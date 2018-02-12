@@ -81,9 +81,9 @@ class SaleOrderLineMoney(models.Model):
         return
 
     @api.multi
-    @api.depends('remaining_qty','order_id.pricelist_id', 'price_unit', 'product_uom_qty')
+    @api.depends('remaining_qty','order_id.pricelist_id', 'price_unit', 'product_uom_qty','order_id')
     def _get_price_order_line(self):
-        SaleOrder = self.env['sale.order']
+        #SaleOrder = self.env['sale.order']
         ProductPriceList = self.env['product.pricelist']
         ResCurrencyRate = self.env['res.currency.rate']
         tipo_de_cambio = ResCurrencyRate.search([('currency_id','=',3)], limit=1, order="name desc")
@@ -91,27 +91,28 @@ class SaleOrderLineMoney(models.Model):
             tipo_de_cambio = tipo_de_cambio[0].rate2
         for rec in self:
             remaining_price = rec.price_unit * rec.remaining_qty
-            price_list = SaleOrder.search([('id','=',rec.order_id.name[2:])])
-            if price_list:
-                price_list = price_list[0].pricelist_id.id
-                currency_id = ProductPriceList.search([('id','=',price_list)])
-                if currency_id:
-                    currency_id = currency_id[0].currency_id.id
-                    if currency_id == 34:
-                        rec.price_order_line = remaining_price
-                        rec.price_order_line_usd = remaining_price/tipo_de_cambio
-                    elif currency_id == 3:
-                        rec.price_order_line = remaining_price*tipo_de_cambio
-                        rec.price_order_line_usd = remaining_price
-                    else:
-                        rec.price_order_line = 0
-                        rec.price_order_line_usd = -1
+            #price_list = SaleOrder.search([('id','=',rec.order_id.name[2:])])
+            #if price_list:
+            #price_list = price_list[0].pricelist_id.id
+            price_list = rec.order_id.pricelist_id.id
+            currency_id = ProductPriceList.search([('id','=',price_list)])
+            if currency_id:
+                currency_id = currency_id[0].currency_id.id
+                if currency_id == 34:
+                    rec.price_order_line = remaining_price
+                    rec.price_order_line_usd = remaining_price/tipo_de_cambio
+                elif currency_id == 3:
+                    rec.price_order_line = remaining_price*tipo_de_cambio
+                    rec.price_order_line_usd = remaining_price
                 else:
-                    rec.price_order_line = -1
-                    rec.price_order_line_usd = 0
+                    rec.price_order_line = 0
+                    rec.price_order_line_usd = -1
             else:
                 rec.price_order_line = -1
-                rec.price_order_line_usd = -1
+                rec.price_order_line_usd = 0
+            #else:
+                #rec.price_order_line = -1
+                #rec.price_order_line_usd = -1
         return
 
     price_order_line = fields.Integer('Price Order Line',compute='_get_price_order_line', store=True)

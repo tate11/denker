@@ -25,6 +25,7 @@
                     <field name="product_id"/>
                     <field name="delivery_status"/>
                     <field name="remaining_qty" sum="Total Cantidad"/>
+                    <!-- groups="__export__.res_groups_187" -->
                     <field name="price_order_line_usd" sum="Total USD" groups="__export__.res_groups_187"/>
                     <field name="price_order_line" sum="Total MXN" groups="__export__.res_groups_187"/>
                     <field name="remaining_qty" invisible='1'/>
