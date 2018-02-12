@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <record id="view_denker_patner" model="ir.ui.view">
+            <field name="name">sale.order.dnk.subtotal</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="arch" type="xml">
+                <field name="amount_total" position="replace">
+                    <field name="amount_untaxed" string="SubTotal" sum="Subtotal" widget="monetary"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>
