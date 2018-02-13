@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="sale.view_order_tree"/>
             <field name="arch" type="xml">
                 <field name="amount_total" position="replace">
-                    <field name="amount_untaxed" string="SubTotal" sum="Subtotal" widget="monetary"/>
+                    <field name="subtotal_usd" string="SubTotal USD" sum="SubTotal USD"/>
                 </field>
             </field>
         </record>
