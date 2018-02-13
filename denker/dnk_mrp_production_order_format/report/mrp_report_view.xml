@@ -18,11 +18,11 @@
             <field name="name">Denker Manufacturing Orders Report</field>
             <field name="format">Letter</field>
             <field name="orientation">Portrait</field>
-            <field name="margin_top">5</field><!-- 40 -->
+            <field name="margin_top">15</field><!-- 40 -->
             <field name="margin_bottom">10</field><!-- 14 -->
             <field name="margin_left">7</field>
             <field name="margin_right">7</field>
-            <field name="header_spacing">5</field><!-- 35 -->
+            <field name="header_spacing">10</field><!-- 35 -->
             <field name="dpi">90</field>
         </record>
 
