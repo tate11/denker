@@ -9,7 +9,7 @@
     #'depends' : ['sale','custom_dnk'],
     'depends' : ['sale','dnk_add_delivery_status'],
     'data': [
-        'sale_view.xml',
+        #'sale_view.xml',
         #'security/groups.xml',
         #'security/ir.model.access.csv',
 

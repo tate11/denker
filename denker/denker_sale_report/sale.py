@@ -171,6 +171,23 @@ class SaleOrderLine(models.Model):
             rec.date_order = datetime.strptime(rec.order_id.date_order, '%Y-%m-%d %H:%M:%S')
         return
 
+    @api.multi
+    @api.depends('remaining_qty', 'qty_to_invoice', 'order_id.delivery_status')
+    def _get_delivery_status(self):
+        for rec in self:
+            rec.delivery_status = rec.order_id.delivery_status
+            rec.text_color = rec.order_id.text_color
+            rec.text_bold = rec.order_id.text_bold
+            rec.supply_filter = rec.order_id.supply_filter
+            if rec.delivery_status == 'Listo P/Facturar' and rec.product_uom_qty > 0:
+                if rec.remaining_qty == 0 and rec.qty_to_invoice > 0:
+                    rec.delivery_status = 'Entregado No Facturado'
+                    rec.text_color = 'gray'
+                elif rec.remaining_qty > 0 and rec.qty_to_invoice == 0:
+                    rec.delivery_status = 'En Entrega a Cliente'
+                    rec.text_color = 'darkblue'
+        return
+
     product_delivery_date = fields.Date("Fecha de Entrega", compute='_compute_commitment_date', store=True)
     delivery_days = fields.Integer('Days', compute='_compute_delivery_days')
     date_last_mail = fields.Datetime('Date Last Mail', compute='_compute_mail_qty')
@@ -193,7 +210,7 @@ class SaleOrderLine(models.Model):
     late = fields.Boolean('Late', compute='_compute_days_to_date')
     int_product_qty = fields.Integer('Product qty', compute='_compute_int_product_qty')
     fabrication_date = fields.Date('Fabrication Date', compute='_compute_days_fabrication', readonly=True, store=True)
-    delivery_status = fields.Char('Delivery Status', related='order_id.delivery_status', store=True)
-    text_color = fields.Char('Text Color', related='order_id.text_color', store=False)
-    text_bold = fields.Boolean('Text Style', related='order_id.text_bold', store=False)
-    supply_filter = fields.Boolean('Supply Filter', related='order_id.supply_filter', store=True)
+    delivery_status = fields.Char('Estatus Entrega', compute='_get_delivery_status', store=True)
+    text_color = fields.Char('Text Color', compute='_get_delivery_status', store=False)
+    text_bold = fields.Boolean('Text Style', compute='_get_delivery_status', store=False)
+    supply_filter = fields.Boolean('Supply Filter', compute='_get_delivery_status', store=True)

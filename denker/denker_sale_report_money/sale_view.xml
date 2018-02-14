@@ -10,7 +10,7 @@
             <field name="arch" type="xml">
                 <tree string="Order Lines"
                 fonts="bold:text_bold==True;bold:product_delivery_date&lt;current_date;"
-                colors="black:text_color=='black';blue:text_color=='blue';green:text_color=='green';orange:text_color=='orange';red:product_delivery_date&lt;current_date;"
+                colors="darkblue:text_color=='darkblue';black:text_color=='black';blue:text_color=='blue';green:text_color=='green';orange:text_color=='orange';red:product_delivery_date&lt;current_date;"
                 create="false" edit="false" >
                     <field name="text_bold" invisible="1"/>
                     <field name="text_color" invisible="1"/>
@@ -18,14 +18,18 @@
                     <field name="days_to_date" invisible='1'/>
                     <field name="late" invisible='1'/>
                     <field name="date_order"/>
+                    <field name="fabrication_date"/>
                     <field name="product_delivery_date" string="Fecha de Entrega"/>
                     <field name="order_partner_id"/>
+                    <field name="route_order"/>
+                    <field name="manufacturing_order"/>
                     <field name="order_id" string="SO"/>
                     <field name="client_order_ref"/>
                     <field name="product_id"/>
                     <field name="delivery_status"/>
-                    <field name="remaining_qty" sum="Total Cantidad"/>
-                    <!-- groups="__export__.res_groups_187" -->
+                    <field name="remaining_qty" sum="Total Pendiente"/>
+                    <!--<field name="product_uom_qty" sum="Total Cantidad"/>-->
+                    <!-- groups="__export__.res_groups_187" PRODUCTIVO -->
                     <field name="price_order_line_usd" sum="Total USD" groups="__export__.res_groups_187"/>
                     <field name="price_order_line" sum="Total MXN" groups="__export__.res_groups_187"/>
                     <field name="remaining_qty" invisible='1'/>
@@ -96,6 +100,8 @@
             <field name="arch" type="xml">
                 <search>
                     <filter string="Surtido" name="supply_filter" domain="[('supply_filter', '=', True)]"/>
+                    <filter string="No Surtido" name="supply_filter2" domain="[('supply_filter', '=', False)]"/>
+                    <filter string="Facturado No Entregado" name="facturado_filter" domain="[('supply_filter', '=', False),('product_uom_qty','>',0),('remaining_qty','>',0),('qty_to_invoice','=',0)]"/>
                     <field name="order_partner_id"/>
                     <field name="product_id"/>
                     <field name="sales_team"/>
@@ -137,7 +143,7 @@
           <field name="name">dnk_pending_sale_report_money_view_pivote</field>
           <field name="model">sale.order.line</field>
           <field name="arch" type="xml">
-            <pivot string="Pending Sale Report Money">
+            <pivot string="Pending Sale Report">
               <field name="sales_team" type="col" />
               <field name="product_delivery_date" interval="month" type="row" />
             </pivot>
@@ -146,13 +152,13 @@
 
         <!-- ACCION -->
         <record id="menu_dnk_pending_sale_report_money_action" model="ir.actions.act_window">
-            <field name="name">Pending Sale Orders Money</field>
+            <field name="name">Pending Sale Orders</field>
             <field name="res_model">sale.order.line</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph,pivot</field>
             <field name="view_id" ref="dnk_pending_sale_report_money"/>
             <field name="context">{'search_default_group_order_id': 1}</field>
-            <field name="domain">[('state','in',('expedition', 'sale','auth_expedition')),('remaining_qty','>',0)]</field>
+            <field name="domain">[('state','in',('expedition', 'sale','auth_expedition')),('product_uom_qty','>',0),'|',('remaining_qty','>',0),('qty_to_invoice','>',0)]</field>
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
 
@@ -163,7 +169,7 @@
         <!-- MENUS -->
         <!-- <menuitem name="Ruteo de albaranes" id="menu_vpicktree2_action" parent="stock.menu_stock_warehouse_mgmt" action="vpicktree2_action" sequence="10" groups="raloy_carta_porte.carta_porte_lectura"/> -->
 
-        <menuitem name="-Pending Sale Orders Money" id="menu_dnk_pending_sale_report_money" parent="sales_team.menu_sale_report" action="menu_dnk_pending_sale_report_money_action" sequence="11" />
+        <menuitem name="-Pending Sale Orders" id="menu_dnk_pending_sale_report_money" parent="sales_team.menu_sale_report" action="menu_dnk_pending_sale_report_money_action" sequence="11" />
 
     </data>
 </openerp>
