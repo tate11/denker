@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="dnk_mod_res_partner_comercial_name" model="ir.ui.view">
+            <field name="name">dnk.mod.res.partner.comercial.name</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <h3>
+                        <field string="Commercial Company Name" readonly="0" name="commercial_company_name"/>
+                    </h3>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
