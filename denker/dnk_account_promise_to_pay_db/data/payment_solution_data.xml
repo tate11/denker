@@ -1,0 +1,32 @@
+<odoo>
+    <data>
+        <record id="data_payment_solution_1" model="dnk.account.payment.solution">
+            <field name="name">Enviar PDF,XML y PO</field>
+            <field name="sequence">1</field>
+        </record>
+        <record id="data_payment_solution_2" model="dnk.account.payment.solution">
+            <field name="name">Anexar Evidencia de Entrega</field>
+            <field name="sequence">2</field>
+        </record>
+        <record id="data_payment_solution_3" model="dnk.account.payment.solution">
+            <field name="name">Refacturar</field>
+            <field name="sequence">3</field>
+        </record>
+        <record id="data_payment_solution_4" model="dnk.account.payment.solution">
+            <field name="name">Timbrar</field>
+            <field name="sequence">4</field>
+        </record>
+        <record id="data_payment_solution_5" model="dnk.account.payment.solution">
+            <field name="name">Hablar Con Requisitor</field>
+            <field name="sequence">5</field>
+        </record>
+        <record id="data_payment_solution_6" model="dnk.account.payment.solution">
+            <field name="name">Otro</field>
+            <field name="sequence">6</field>
+        </record>
+        <record id="data_payment_solution_7" model="dnk.account.payment.solution">
+            <field name="name">Factura Cobrable</field>
+            <field name="sequence">7</field>
+        </record>
+    </data>
+</odoo>
