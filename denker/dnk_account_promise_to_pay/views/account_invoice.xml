@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<odoo>
+    <!-- Promesa de pago en vista Form de factura de clientes. -->
+    <data>
+        <record id="dnk_invoice_add_promise_to_pay_1" model="ir.ui.view">
+            <field name="name">dnk.invoice.add.promise.to.pay.1</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_due']" position="after">
+                    <field name="promise_to_pay"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+    <!-- Solución de cobro en vista Form  de factura de clientes. -->
+    <data>
+        <record id="dnk_invoice_add_payment_solution_1" model="ir.ui.view">
+            <field name="name">dnk.invoice.add.payment.solution.1</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="l10n_mx_sat_models.account_invoice_form_inherit_cfdi_33"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='uso_cfdi_id']" position="after">
+                    <field name="payment_solution" widget="many2many_tags"
+                        options="{'no_create_edit': True}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+    <!-- Solución de cobro en vista Tree de facturas de clientes. -->
+    <data>
+        <record id="dnk_account_payment_solution_tree" model="ir.ui.view">
+            <field name="name">dnk.account.payment.solution.tree</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_tree"/>
+            <field name="arch" type="xml">
+				<field name="commercial_partner_id" position="before">
+					<field name="payment_solution" widget="many2many_tag"/>
+				</field>
+            </field>
+        </record>
+    </data>
+</odoo>
