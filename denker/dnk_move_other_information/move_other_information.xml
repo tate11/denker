@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <record id="view_denker_patner" model="ir.ui.view">
+            <field name="name">sale.order.move.other.information</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="sheet/notebook/page[2]/group/group/field[@name='warehouse_id']" position="replace">
+                </xpath>
+                <xpath expr="sheet/notebook/page[2]/group/group/field[@name='picking_policy']" position="replace">
+                </xpath>
+                <xpath expr="sheet/notebook/page[2]/group/group[2]/field[@name='user_id']" position="replace">
+                </xpath>
+                <xpath expr="sheet/notebook/page[2]/group/group[2]/field[@name='team_id']" position="replace">
+                </xpath>
+                <xpath expr="sheet/group/group[2]" position="after">
+                    <group string="Shipping Information" name="sale_shipping">
+						<field name="warehouse_id" options="{'no_create': True}" on_change="1" can_create="true" can_write="true" modifiers="{'readonly': [['state', 'not in', ['draft', 'sent']]], 'required': true}"/>
+						<field name="picking_policy" required="True" modifiers="{'readonly': [['state', 'not in', ['draft', 'sent']]], 'required': true}"/>
+					</group>
+					<group string="Sales Information" name="sales_person">
+						<field name="user_id" can_create="true" can_write="true" modifiers="{}"/>
+						<field name="team_id" options="{'no_create': True}" can_create="true" can_write="true" modifiers="{}"/>
+					</group>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

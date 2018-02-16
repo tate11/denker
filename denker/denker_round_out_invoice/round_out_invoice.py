@@ -1,11 +1,13 @@
 
 # -*- coding: utf-8 -*-
 import json
+import decimal
 from odoo.tools import float_is_zero, float_compare
 from openerp import models, fields, api, _
 from openerp.exceptions import UserError, RedirectWarning, ValidationError
 from datetime import datetime, timedelta, date
 from decimal import Decimal, ROUND_05UP, ROUND_HALF_UP
+
 
 class RoundOutInvoice(models.Model):
     _inherit = "account.invoice"
@@ -16,9 +18,11 @@ class RoundOutInvoice(models.Model):
         round_curr = self.currency_id.round
         amount_untaxed = sum(line.price_subtotal for line in self.invoice_line_ids)
         amount_tax = sum(round_curr(line.amount) for line in self.tax_line_ids)
-        amount_untaxed = round(amount_untaxed, 2)
+        # amount_untaxed = round(amount_untaxed, 2)
+        amount_untaxed = (float)(Decimal(str(amount_untaxed)).quantize(Decimal("0.01"), decimal.ROUND_HALF_UP))
         self.amount_untaxed = amount_untaxed
-        amount_tax = round(amount_tax, 2)
+        # amount_tax = round(amount_tax, 2)
+        amount_tax = (float)(Decimal(str(amount_tax)).quantize(Decimal("0.01"), decimal.ROUND_HALF_UP))
         self.amount_tax = amount_tax
         self.amount_total = self.amount_untaxed + self.amount_tax
         amount_total_company_signed = self.amount_total
@@ -52,7 +56,8 @@ class RoundOutInvoice(models.Model):
         self.residual_company_signed = abs(residual_company_signed) * sign
         self.residual_signed = abs(residual) * sign
         self.residual = abs(residual)
-        self.residual = round(self.residual, 2)
+        # self.residual = round(self.residual, 2)
+        self.residual = (float)(Decimal(str(self.residual)).quantize(Decimal("0.01"), decimal.ROUND_HALF_UP))
         digits_rounding_precision = self.currency_id.rounding
         if float_is_zero(self.residual, precision_rounding=digits_rounding_precision):
             self.reconciled = True
