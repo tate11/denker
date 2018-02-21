@@ -1,7 +1,7 @@
 <odoo>
     <data>
         <record id="data_payment_solution_1" model="dnk.account.payment.solution">
-            <field name="name">Enviar PDF,XML y PO</field>
+            <field name="name">Enviar PDF, XML y PO</field>
             <field name="sequence">1</field>
         </record>
         <record id="data_payment_solution_2" model="dnk.account.payment.solution">
@@ -28,5 +28,13 @@
             <field name="name">Factura Cobrable</field>
             <field name="sequence">7</field>
         </record>
+    </data>
+    <!-- Agregar el  grupo  de Crédito y conbranza -->
+    <data>
+        <record id="dnk_credito_y_cobranza" model="res.groups">
+           <field name="name">Crédito y Cobranza</field>
+           <field name="comment">This group can modify some fields on invoices</field>
+           <field name="category_id">89</field> <!-- Id de la aplicación que quiero, que sería Grupos Denker -->
+       </record>
     </data>
 </odoo>
