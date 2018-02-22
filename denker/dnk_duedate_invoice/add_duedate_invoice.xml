@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <record id="view_dnk_duedate_invoice" model="ir.ui.view">
+            <field name="name">account.invoice.tree.duedate</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="/tree/field[@name='date_invoice']" position="before">
+                    <field name="date_due"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_dnk_duedate_invoice_supplier" model="ir.ui.view">
+            <field name="name">account.invoice.supplier.tree.duedate</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="/tree/field[@name='date_invoice']" position="before">
+                    <field name="date_due"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>
