@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='date_due']" position="after">
-                    <field name="promise_to_pay"/>
+                    <field name="promise_to_pay" groups="dnk_account_promise_to_pay_db.dnk_credito_y_cobranza"/>
                 </xpath>
             </field>
         </record>
@@ -22,7 +22,7 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='uso_cfdi_id']" position="after">
                     <field name="payment_solution" widget="many2many_tags"
-                        options="{'no_create_edit': True}"/>
+                        options="{'no_create_edit': True}" groups="dnk_account_promise_to_pay_db.dnk_credito_y_cobranza"/>
                 </xpath>
             </field>
         </record>
@@ -35,8 +35,22 @@
             <field name="inherit_id" ref="account.invoice_tree"/>
             <field name="arch" type="xml">
 				<field name="commercial_partner_id" position="before">
-					<field name="payment_solution" widget="many2many_tag"/>
+					<field name="payment_solution" widget="many2many_tag" groups="dnk_account_promise_to_pay_db.dnk_credito_y_cobranza"/>
 				</field>
+            </field>
+        </record>
+    </data>
+    <!-- -->
+    <data>
+        <record id="dnk_account_promise_to_pay_filter1" model="ir.ui.view">
+            <field name="name">dnk.account.promise.to.pay.filter1</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search/group" position="inside">
+                    <filter string="Promise to Pay Week" domain="[]" context="{'group_by':'promise_to_pay:week'}"
+                        groups="dnk_account_promise_to_pay_db.dnk_credito_y_cobranza"/>
+                </xpath>
             </field>
         </record>
     </data>
