@@ -29,7 +29,7 @@
             <field name="sequence">7</field>
         </record>
     </data>
-    <!-- Agregar el  grupo  de Crédito y conbranza -->
+    <!-- Agregar el grupo de Crédito y cobranza -->
     <data>
         <record id="dnk_credito_y_cobranza" model="res.groups">
            <field name="name">Crédito y Cobranza</field>

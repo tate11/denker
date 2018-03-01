@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<odoo>
+   <!--  Agregar el campo de nombre comercial para que lo puedan editar-->
+    <data>
+        <record id="dnk_mod_res_partner_comercial_name" model="ir.ui.view">
+            <field name="name">dnk.mod.res.partner.comercial.name</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <h3>
+                        <field string="Commercial Company Name" readonly="0" name="commercial_company_name"/>
+                    </h3>
+                </xpath>
+            </field>
+        </record>
+    </data>
+    <!-- Para que en la barra de búsqueda, en la vista de clientes también busque por nombre comercial. -->
+    <data>
+        <record id="dnk_mod_res_partner_comercial_name_search" model="ir.ui.view">
+            <field name="name">dnk.mod.res.partner.comercial.name.search</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="replace">
+                        <field name="name" filter_domain="['|','|','|',('display_name','ilike',self),('ref','=',self),('email','ilike',self),('commercial_company_name','ilike',self)]"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+    <data>
+        <record id="dnk_mod_res_partner_comercial_name_form_1" model="ir.ui.view">
+            <field name="name">dnk.mod.res.partner.comercial.name.form.1</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="replace">
+                    <field name="partner_id" domain="[('customer','=',True), ('company_type2', 'in', ('company', 'physical_person'))]" context="{'search_default_customer':1, 'show_address': 1}" options="{&quot;always_reload&quot;: True, 'no_create': True}"/>
+                    <field name="commercial_name" help="Commercial Company Name" String="Commercial Company Name"/> 
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
