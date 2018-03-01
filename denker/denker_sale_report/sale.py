@@ -151,7 +151,7 @@ class SaleOrderLine(models.Model):
         return
 
     @api.multi
-    @api.depends('product_id')
+    @api.depends('product_id', 'order_id.team_id')
     def _get_sales_team(self):
         for rec in self:
             rec.sales_team = rec.order_id.team_id.name
