@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <!-- AGREGA EL CAMPO ORDER CORRECTIONS A LA VISTA -->
+        <record id="view_dnk_order_corrections" model="ir.ui.view">
+            <field name="name">sale.order.corrections</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="dnk_add_purchase_order.view_dnk_purchase_order"/>
+            <field name="groups_id" eval="[(6, 0, [ref('dnk_order_corrections_db.order_corrections_group') ])]"/>
+            <field name="arch" type="xml">
+                <field name="customer_purchase_order_file" position="after">
+                    <field name="order_corrections" widget="many2many_tags" options="{'no_create_edit':'1'}"
+                        attrs="{'invisible': [('state', 'not in', ['fix','validate','sale'])], 'readonly': [('state','=','sale')]}"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- AGREGA LOS ESTADOS NUEVOS A LA BARRA DE PEDIDOS -->
+        <!-- AGREGA EL NUEVO BOTON 'VALIDAR PEDIDO' CUANDO ESTADO ES IGUAL A 'PRESUPUESTO ENVIADO' O 'CORREGIR PEDIDO' -->
+        <!-- AGREGA EL NUEVO BOTON 'CORREGIR PEDIDO' CUANDO ESTADO ES IGUAL A 'VALIDAR PEDIDO' -->
+        <!-- MODIFICA EL BOTON 'CONFIRM SALE' PARA QUE SOLO SEA VISIBLE DESDE EL ESTADO 'VALIDAR PEDIDO' -->
+        <!-- MODIFICA EL CAMPOR 'REFERENCIA DEL CLIENTE' PARA QUE SEA SOLO DE LECTURA -->
+        <!-- HACE EL CAMPO 'COMERCIAL' SOLO LECTURA EN ESTADO 'VALIDAR PEDIDO'-->
+        <!-- HACE EL CAMPO 'EQUIPO DE VENTAS' SOLO LECTURA EN ESTADO 'VALIDAR PEDIDO'-->
+        <!-- ELMINA EL BOTON DE 'EDIT' CUANDO EL PEDIDO YA ESTA CONFIRMADO-->
+        <record id="view_dnk_order_corrections_form" model="ir.ui.view">
+            <field name="name">sale.order.corrections.form</field>
+            <field name="model">sale.order</field>
+            <field name="priority" eval="17"/>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <field name="state" position="after">
+                    <field name="current_company" invisible="1"/>
+                </field>
+                <!--<xpath expr="//form" position="attributes">
+                    <attribute name="attrs">{'edit': [('state', '!=', 'sale')]}</attribute>
+                </xpath>-->
+                <field name="state" position="replace">
+                    <field name="state" widget="statusbar" statusbar_visible="draft,sent,to fix,validate,sale"/>
+                </field>
+                <button name="action_confirm" position="replace">
+                    <button name="action_confirm" states="validate" string="Confirmar Venta" class="o_sale_confirm" type="object" />
+                    <button name="action_validate" states="sent,fix" string="Validar Pedido" class="o_sale_validate" type="object" />
+                    <button name="action_fix" states="validate" string="Corregir Pedido" class="o_sale_fix" type="object" />
+                </button>
+                <button name="action_cancel" position="replace">
+                    <button name="action_cancel" states="draft,sent,sale" type="object" string="Cancel" groups="dnk_order_corrections_db.order_cancel_group"/>
+                </button>
+                <field name="client_order_ref" position="replace">
+                    <field name="client_order_ref" attrs="{'readonly': 1}" on_change="1" modifiers="{'readonly': 1, 'required': False}"/>
+                </field>
+                <field name="user_id" position="replace">
+                    <field name="user_id" can_create="true" can_write="true" modifiers="{}" attrs="{'readonly': [('state','=','validate')]}"/>
+                </field>
+                <field name="team_id" position="replace">
+                    <field name="team_id" options="{'no_create': True}" can_create="true" can_write="true" modifiers="{}" attrs="{'readonly': [('state','=','validate')]}"/>
+                </field>
+		<field name="partner_id" position="replace">
+                    <field name="partner_id" domain="[('customer','=',True), ('company_type2', 'in', ('company', 'physical_person'))]" context="{'search_default_customer':1, 'show_address': 1}" options="{'no_create': True}" on_change="1" can_create="true" can_write="true" modifiers="{'readonly': [['state', 'not in', ['draft', 'sent','fix']]], 'required': true}"/>
+                </field>
+                <field name="partner_invoice_id" position="replace">
+                    <field name="partner_invoice_id" context="{'default_type':'invoice'}" domain="[('customer','=',True), ('company_type2', 'in', ('company', 'physical_person'))]" options="{'no_create': True}" can_create="true" can_write="true" modifiers="{'readonly': [['state', 'not in', ['draft', 'sent','fix']]], 'required': true}"/>
+                </field>
+                <field name="partner_shipping_id" position="replace">
+                    <field name="partner_shipping_id" context="{'default_type':'delivery'}" options="{'no_create': True}" on_change="1" can_create="true" can_write="true" modifiers="{'readonly': [['state', 'not in', ['draft', 'sent','fix']]], 'required': true}"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

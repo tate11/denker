@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+
+        <record id="view_dnk_add_fields_stockpicking" model="ir.ui.view">
+            <field name="name">stock.picking.add.fields</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.vpicktree"/>
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                    <field name="id" String="ID"/>
+                </field>
+                <field name="name" position="after">
+                    <field name="location_id"/>
+                </field>
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="default_order">id desc</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

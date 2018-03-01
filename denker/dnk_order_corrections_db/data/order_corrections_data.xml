@@ -1,0 +1,87 @@
+<odoo>
+    <data>
+        <!-- New group -->
+        <record id="order_corrections_group" model="res.groups">
+            <field name="name">Sale Orden Corrections</field>
+            <field name="comment">This group can modify the field 'Order Corrections' in SaleOrder</field>
+        </record>
+        <record id="order_cancel_group" model="res.groups">
+            <field name="name">Sale Orden Cancel</field>
+            <field name="comment">This group can cancel Sale Orders</field>
+        </record>
+        <record id="order_edit_group" model="res.groups">
+            <field name="name">Sale Orden Edit</field>
+            <field name="comment">This group can edit Sale Orders in 'sale' state</field>
+        </record>
+
+
+        <!-- TEST
+        <record id="order_corrections_group" model="res.groups">
+            <field name="name">Sale order corrections</field>
+            <field name="comment">This group can modify the field 'Order Corrections' in SaleOrder.</field>
+            <field name="category_id" ref="order_corrections.module_dnk_order_corrections_db"/>
+        </record>
+        <record model="ir.module.category" id="module_dnk_order_corrections_db">
+            <field name="name">Sale Order Corrections</field>
+            <field name="description">Sale Order Corrections Group</field>
+            <field name="sequence">20</field>
+        </record>
+        -->
+        <record id="data_order_corrections_1" model="dnk.sale.order.corrections.model">
+            <field name="name">Correcto</field>
+            <field name="sequence">1</field>
+        </record>
+        <record id="data_order_corrections_2" model="dnk.sale.order.corrections.model">
+            <field name="name">Almacen</field>
+            <field name="sequence">2</field>
+        </record>
+        <record id="data_order_corrections_3" model="dnk.sale.order.corrections.model">
+            <field name="name">Cantidad</field>
+            <field name="sequence">3</field>
+        </record>
+        <record id="data_order_corrections_4" model="dnk.sale.order.corrections.model">
+            <field name="name">Cliente</field>
+            <field name="sequence">4</field>
+        </record>
+        <record id="data_order_corrections_5" model="dnk.sale.order.corrections.model">
+            <field name="name">Cuenta analítica</field>
+            <field name="sequence">5</field>
+        </record>
+        <record id="data_order_corrections_6" model="dnk.sale.order.corrections.model">
+            <field name="name">Equipo ventas</field>
+            <field name="sequence">6</field>
+        </record>
+        <record id="data_order_corrections_7" model="dnk.sale.order.corrections.model">
+            <field name="name">Impuestos</field>
+            <field name="sequence">7</field>
+        </record>
+        <record id="data_order_corrections_8" model="dnk.sale.order.corrections.model">
+            <field name="name">Lugar de entrega</field>
+            <field name="sequence">8</field>
+        </record>
+        <record id="data_order_corrections_9" model="dnk.sale.order.corrections.model">
+            <field name="name">Moneda</field>
+            <field name="sequence">9</field>
+        </record>
+        <record id="data_order_corrections_10" model="dnk.sale.order.corrections.model">
+            <field name="name">Precio</field>
+            <field name="sequence">10</field>
+        </record>
+        <record id="data_order_corrections_11" model="dnk.sale.order.corrections.model">
+            <field name="name">Producto</field>
+            <field name="sequence">11</field>
+        </record>
+        <record id="data_order_corrections_12" model="dnk.sale.order.corrections.model">
+            <field name="name">Referencia cliente</field>
+            <field name="sequence">12</field>
+        </record>
+        <record id="data_order_corrections_13" model="dnk.sale.order.corrections.model">
+            <field name="name">Validar</field>
+            <field name="sequence">13</field>
+        </record>
+        <record id="data_order_corrections_14" model="dnk.sale.order.corrections.model">
+            <field name="name">Vendedor (comercial)</field>
+            <field name="sequence">14</field>
+        </record>
+    </data>
+</odoo>
