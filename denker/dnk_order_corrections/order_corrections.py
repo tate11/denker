@@ -45,7 +45,7 @@ class SaleOrderCorrections(models.Model):
         correcto = OrderCorrectionsModel.search([('id', '=', 1)])
         for order in self:
             #if current_userid == order.user_id.id:
-                #raise ValidationError(_("El pedido no puede ser Confimado por el mismo usuario que lo genera"))
+                #raise ValidationError(_("El pedido no puede ser Confirmado por el mismo usuario que lo genera"))
             order.state = 'sale'
             order.order_corrections = correcto
             order.confirmation_date = fields.Datetime.now()

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="view_denker_delivered_evidence_v2" model="ir.ui.view">
+            <field name="name">stock.picking.delivered.evidence.v2</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="priority" eval="18"/>
+            <field name="arch" type="xml">
+                <page name="delivered_evidence" position="replace">
+                    <page string="Delivered Evidence" name="delivered_evidence" attrs="{'invisible': [('location_dest_id', '!=', 9),('location_dest_bool', '=', False)]}">
+                        <group>
+                            <field name="image_medium" widget="image" invisible="0"/>
+                            <field name="image" widget="image" invisible="1"/>
+                            <field name="location_dest_bool" invisible="1"/>
+                        </group>
+                    </page>
+                </page>
+            </field>
+        </record>
+    </data>
+</openerp>

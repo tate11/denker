@@ -20,4 +20,4 @@ class StockPicking(models.Model):
             # print('############################### Sale Order Array: '+str(rec.saleorder_id))
         return
 
-    saleorder_id = fields.Many2one('sale.oder', compute="_get_sale_order_id", store=True)
+    saleorder_id = fields.Many2one('sale.order', compute="_get_sale_order_id", store=True)
