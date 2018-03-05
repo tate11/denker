@@ -50,7 +50,7 @@ class DeliveredEvidence(models.Model):
                 if operation.qty_done > operation.product_qty:
                     raise ValidationError(_('No se puede entregar más de lo que está establecido'))
         # if not self.image_medium and (self.location_dest_id.id == 9 or self.location_dest_bool):
-            if not self.image_medium and (self.location_dest_id.id == 9):
+        if not self.image_medium and (self.location_dest_id.id == 9):
             raise ValidationError(_('Please, first attach an image as delivered evidence to continue'))
         return super(DeliveredEvidence,self).do_new_transfer()
 
