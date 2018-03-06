@@ -11,7 +11,7 @@
                     <group>
                         <field name="group_name" invisible="1"/>
                         <field name="invoice_id" readonly="0" options="{'no_create': True}"
-                            domain = "[('type', '=', 'out_invoice'),('state', '!=', 'cancel'), ('origin', '=', group_name)]"
+                            domain = "[('state', '!=', 'cancel'), ('origin', '=', group_name)]"
                             />
                     </group>
                 </xpath>
