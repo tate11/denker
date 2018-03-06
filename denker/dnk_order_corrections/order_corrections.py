@@ -28,9 +28,9 @@ class SaleOrderCorrections(models.Model):
                 corregir en el campo 'Corregir En Pedido'"))
             order.state = 'fix'
         return True
-    def action_to_sent(self):
+    def action_to_draft(self):
         for order in self:
-            order.state = 'sent'
+            order.state = 'draft'
         return True
 
     @api.multi

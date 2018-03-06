@@ -41,9 +41,9 @@
                 </field>
                 <button name="action_confirm" position="replace">
                     <button name="action_confirm" states="validate" string="Confirmar Venta" class="o_sale_confirm" type="object" />
-                    <button name="action_validate" states="sent,fix" string="Validar Pedido" class="o_sale_validate" type="object" />
+                    <button name="action_validate" states="sent,fix,draft" string="Validar Pedido" class="o_sale_validate" type="object" />
                     <button name="action_fix" states="validate" string="Corregir Pedido" class="o_sale_fix" type="object" />
-                    <button name="action_to_sent" states="fix,validate" string="To Sent" class="o_sale_fix" type="object" />
+                    <button name="action_to_draft" states="fix" string="To Draft" class="o_sale_fix" type="object" />
                 </button>
                 <button name="action_cancel" position="replace">
                     <button name="action_cancel" states="draft,sent,sale" type="object" string="Cancel" groups="dnk_order_corrections_db.order_cancel_group"/>
