@@ -8,9 +8,10 @@
             <field name="model">stock.picking</field>
             <field name="inherit_id" ref="stock.vpicktree"/>
             <field name="arch" type="xml">
-                <field name="name" position="before">
+                <!-- No sé para qué lo agregaron, pero ya no lo quieren, BC-->
+                <!-- <field name="name" position="before">
                     <field name="id" String="ID"/>
-                </field>
+                </field> -->
                 <field name="name" position="after">
                     <field name="location_id"/>
                 </field>

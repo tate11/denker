@@ -43,6 +43,7 @@
                     <button name="action_confirm" states="validate" string="Confirmar Venta" class="o_sale_confirm" type="object" />
                     <button name="action_validate" states="sent,fix" string="Validar Pedido" class="o_sale_validate" type="object" />
                     <button name="action_fix" states="validate" string="Corregir Pedido" class="o_sale_fix" type="object" />
+                    <button name="action_to_sent" states="fix,validate" string="To Sent" class="o_sale_fix" type="object" />
                 </button>
                 <button name="action_cancel" position="replace">
                     <button name="action_cancel" states="draft,sent,sale" type="object" string="Cancel" groups="dnk_order_corrections_db.order_cancel_group"/>
@@ -56,7 +57,7 @@
                 <field name="team_id" position="replace">
                     <field name="team_id" options="{'no_create': True}" can_create="true" can_write="true" modifiers="{}" attrs="{'readonly': [('state','=','validate')]}"/>
                 </field>
-		<field name="partner_id" position="replace">
+                <field name="partner_id" position="replace">
                     <field name="partner_id" domain="[('customer','=',True), ('company_type2', 'in', ('company', 'physical_person'))]" context="{'search_default_customer':1, 'show_address': 1}" options="{'no_create': True}" on_change="1" can_create="true" can_write="true" modifiers="{'readonly': [['state', 'not in', ['draft', 'sent','fix']]], 'required': true}"/>
                 </field>
                 <field name="partner_invoice_id" position="replace">
