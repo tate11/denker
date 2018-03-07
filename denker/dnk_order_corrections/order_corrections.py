@@ -48,7 +48,8 @@ class SaleOrderCorrections(models.Model):
         OrderCorrectionsModel = self.env['dnk.sale.order.corrections.model']
         correcto = OrderCorrectionsModel.search([('id', '=', 1)])
         for order in self:
-            if current_userid == order.user_id.id:
+            print current_userid
+            if current_userid == order.write_uid.id:
                 raise ValidationError(_("El pedido no puede ser Confirmado por el mismo usuario que lo genera"))
             order.state = 'sale'
             order.order_corrections = correcto
