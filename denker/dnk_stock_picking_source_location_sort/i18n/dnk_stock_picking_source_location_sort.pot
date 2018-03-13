@@ -1,0 +1,43 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* dnk_stock_picking_source_location_sort
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-03-02 18:27+0000\n"
+"PO-Revision-Date: 2018-03-02 18:27+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: dnk_stock_picking_source_location_sort
+#: model:ir.model,name:dnk_stock_picking_source_location_sort.model_stock_location
+msgid "Inventory Locations"
+msgstr ""
+
+#. module: dnk_stock_picking_source_location_sort
+#: model:ir.model.fields,field_description:dnk_stock_picking_source_location_sort.field_stock_location_sequence
+#: model:ir.model.fields,field_description:dnk_stock_picking_source_location_sort.field_stock_picking_location_src_sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: dnk_stock_picking_source_location_sort
+#: model:ir.model.fields,help:dnk_stock_picking_source_location_sort.field_stock_location_sequence
+msgid "Sequence to sort \"Stock Pickings\" in Sales Orders"
+msgstr ""
+
+#. module: dnk_stock_picking_source_location_sort
+#: model:ir.model.fields,help:dnk_stock_picking_source_location_sort.field_stock_picking_location_src_sequence
+msgid "Source Location Sequence"
+msgstr ""
+
+#. module: dnk_stock_picking_source_location_sort
+#: model:ir.model,name:dnk_stock_picking_source_location_sort.model_stock_picking
+msgid "Transfer"
+msgstr ""
+

@@ -1,0 +1,26 @@
+<odoo>
+  <data>
+      <!-- Stock Location -->
+      <record id="view_stock_location_sequence_view_form" model="ir.ui.view">
+          <field name="name">view_stock_location_sequence_view_form</field>
+          <field name="model">stock.location</field>
+          <field name="inherit_id" ref="stock.view_location_form"/>
+          <field name="arch" type="xml">
+              <xpath expr="//form/group/group[2]/field[@name='barcode']" position="after">
+                  <field name="sequence"/>
+              </xpath>
+          </field>
+      </record>
+
+      <record id="view_stock_location_sequence_view_tree" model="ir.ui.view">
+          <field name="name">view_stock_location_sequence_view_tree</field>
+          <field name="model">stock.location</field>
+          <field name="inherit_id" ref="stock.view_location_tree2"/>
+          <field name="arch" type="xml">
+              <xpath expr="//tree/field[@name='display_name']" position="after">
+                  <field name="sequence"/>
+              </xpath>
+          </field>
+      </record>
+  </data>
+</odoo>
