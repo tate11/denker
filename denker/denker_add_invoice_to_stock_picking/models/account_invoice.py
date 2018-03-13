@@ -14,9 +14,10 @@ class addto_account_invoice_tracking_reference(models.Model):
             M_stock_picking = self.env['stock.picking']
             stock_picking = M_stock_picking.search([('invoice_id', '=', rec.id)])
             rec.carrier_tracking_ref = ""
-            if stock_picking and reg.carrier_id:
+            if stock_picking:
                 for reg in stock_picking:
-                    rec.carrier_tracking_ref += reg.carrier_id.name + '-' + reg.carrier_tracking_ref + ' <br>'
+                    if reg.carrier_id:
+                        rec.carrier_tracking_ref += reg.carrier_id.name + '-' + reg.carrier_tracking_ref + ' <br>'
                 # print rec.carrier_tracking_ref
         return
 
