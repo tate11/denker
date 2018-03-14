@@ -8,4 +8,4 @@ class Picking(models.Model):
 
     location_src_sequence = fields.Integer(
         'Sequence', help="Source Location Sequence", store=True,
-        readonly=True, related='location_id.sequence')
+        readonly=True, related='location_id.sequence', group_operator='max')
