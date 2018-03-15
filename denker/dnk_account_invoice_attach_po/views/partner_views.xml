@@ -1,0 +1,15 @@
+<odoo>
+  <data>
+    <record id="view_attach_pucrchase_order_to_invoice_form_view" model="ir.ui.view">
+        <field name="name">view_attach_pucrchase_order_to_invoice_form_view</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="priority">50</field>
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <field name="attach_purchase_order_to_invoice_mail"/>
+            </field>
+        </field>
+    </record>
+  </data>
+</odoo>

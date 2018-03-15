@@ -1,0 +1,17 @@
+<odoo>
+    <data>
+        <!-- Account Invoice -->
+        <record id="view_invoice_sale_order_link_view_form" model="ir.ui.view">
+            <field name="name">view_invoice_sale_order_link_view_form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="priority">50</field>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='other_info']//field[@name='origin']" position="after">
+                    <field name="filename" invisible="1" />
+                    <field widget="binary" name="customer_purchase_order_file" filename="filename" readonly="1"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

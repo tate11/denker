@@ -1,0 +1,56 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* dnk_account_invoice_attach_po
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-03-09 21:56+0000\n"
+"PO-Revision-Date: 2018-03-09 21:56+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: dnk_account_invoice_attach_po
+#: model:ir.model.fields,field_description:dnk_account_invoice_attach_po.field_res_partner_attach_purchase_order_to_invoice_mail
+#: model:ir.model.fields,field_description:dnk_account_invoice_attach_po.field_res_users_attach_purchase_order_to_invoice_mail
+msgid "Attach PO to Invoice Mail"
+msgstr "Adjuntar PO a Correo de Factura"
+
+#. module: dnk_account_invoice_attach_po
+#: model:ir.model,name:dnk_account_invoice_attach_po.model_mail_compose_message
+msgid "Email composition wizard"
+msgstr "Asistente de redacción de correo electrónico."
+
+#. module: dnk_account_invoice_attach_po
+#: model:ir.model.fields,field_description:dnk_account_invoice_attach_po.field_account_invoice_filename
+#: model:ir.model.fields,field_description:dnk_account_invoice_attach_po.field_dnk_account_promise_to_pay_filename
+msgid "Filename"
+msgstr "Nombre de archivo"
+
+#. module: dnk_account_invoice_attach_po
+#: model:ir.model,name:dnk_account_invoice_attach_po.model_account_invoice
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: dnk_account_invoice_attach_po
+#: model:ir.model,name:dnk_account_invoice_attach_po.model_res_partner
+msgid "Partner"
+msgstr "Cliente"
+
+#. module: dnk_account_invoice_attach_po
+#: model:ir.model.fields,field_description:dnk_account_invoice_attach_po.field_account_invoice_customer_purchase_order_file
+#: model:ir.model.fields,field_description:dnk_account_invoice_attach_po.field_dnk_account_promise_to_pay_customer_purchase_order_file
+msgid "Purchase Order Document"
+msgstr "Documento de Order de Compra"
+
+#. module: dnk_account_invoice_attach_po
+#: model:ir.model.fields,help:dnk_account_invoice_attach_po.field_res_partner_attach_purchase_order_to_invoice_mail
+#: model:ir.model.fields,help:dnk_account_invoice_attach_po.field_res_users_attach_purchase_order_to_invoice_mail
+msgid "¿Adjuntar Orden de Compra al enviar la factura?"
+msgstr "¿Adjuntar Orden de Compra al enviar la factura?"
+
