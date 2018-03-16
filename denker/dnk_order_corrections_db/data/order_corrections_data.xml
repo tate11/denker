@@ -76,7 +76,7 @@
             <field name="sequence">12</field>
         </record>
         <record id="data_order_corrections_13" model="dnk.sale.order.corrections.model">
-            <field name="name">Validar</field>
+            <field name="name">Dirección de Entrega</field>
             <field name="sequence">13</field>
         </record>
         <record id="data_order_corrections_14" model="dnk.sale.order.corrections.model">
