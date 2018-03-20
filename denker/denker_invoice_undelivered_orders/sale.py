@@ -40,7 +40,7 @@ class InvoiceUndelivered(models.Model):
                     INNER JOIN res_currency CUR ON CUR.id = PL.currency_id
                     INNER JOIN res_company C ON C.id = SOL.company_id
                     WHERE SOL.qty_invoiced  <> SOL.qty_delivered
-                    AND SO.state NOT IN ('cancel')
+                    AND SO.state NOT IN ('cancel','done')
             )""")
     sale_order = fields.Char("SO", readonly=True)
     date_order = fields.Date("Date Order", readonly=True)
