@@ -19,7 +19,7 @@ class MailComposeMessage(models.TransientModel):
             ir_account = Account.search([('id','=',self.res_id)]) #Me traigo la factura para acceder al nombre del archivo
             if ir_account:
                 #Busco el adjunto en la tabla de adjuntos por el nombre del archivo adjunto y que sea de la factura
-                ir_attachment_po = Attachment.search([('res_id','=',self.res_id),('name','=',ir_account.filename)])
+                ir_attachment_po = Attachment.search([('res_id','=',self.res_id),('name','=',ir_account.filename)], limit=1, order="id desc")
                 #Si encontre factura y tengo como true el valor de adjuntar PO en el cliente,  entonces lo hago
                 if ir_attachment_po and ir_account.partner_id.attach_purchase_order_to_invoice_mail:
                     #si encuentro algo, se lo agrego y hago el update de values
