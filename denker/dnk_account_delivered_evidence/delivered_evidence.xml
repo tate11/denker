@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="view_denker_account_delivered_evidence" model="ir.ui.view">
+            <field name="name">account.invoice.delivered.evidence</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <page name="other_info" position="after">
+                    <page string="Delivery Evidence" name="delivered_evidence">
+                        <group>
+                            <field name="image_medium" widget="image" invisible="0"/>
+                            <field name="image" widget="image" invisible="1"/>
+                        </group>
+                    </page>
+                </page>
+            </field>
+        </record>
+    </data>
+</openerp>
