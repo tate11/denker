@@ -19,7 +19,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['product'],
+    'depends': ['product','dnk_sale_theoretical_cost_db'],
 
     # always loaded
     'data': [

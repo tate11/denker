@@ -11,4 +11,16 @@
               </field>
           </record>
   </data>
+  <data>
+          <record id="dnk_sale_product_theoretical_cost_form" model="ir.ui.view">
+              <field name="name">dnk.sale.product_theoretical.cost.form</field>
+              <field name="model">product.product</field>
+              <field name="inherit_id" ref="product.product_normal_form_view"/>
+              <field name="arch" type="xml">
+                  <xpath expr="//field[@name='company_id']" position="before">
+                      <field name="theoretical_cost"/>
+                  </xpath>
+              </field>
+          </record>
+  </data>
 </odoo>
