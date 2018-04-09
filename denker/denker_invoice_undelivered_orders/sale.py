@@ -22,11 +22,14 @@ class InvoiceUndelivered(models.Model):
                     AI.invoices AS invoices, AI.last_invoice_date, SO.date_order::date AS date_order,
                     PCP.name AS product_family, SOL.name AS sol_product_name,
                     SOL.state AS sale_order_line_state,
-                    SOL.product_uom_qty AS order_line_qty,   SOL.qty_invoiced, SOL.qty_delivered,
+                    SOL.product_uom_qty AS order_line_qty, SOL.qty_invoiced, SOL.qty_delivered,
                     SOL.price_reduce AS product_price,
                     CUR.name AS currency_name,
-                    SOL.company_id AS company_id, C.name AS company_name
-                    FROM sale_order SO LEFT JOIN sale_order_line SOL ON  SO.id = SOL.order_id
+                    SOL.company_id AS company_id, C.name AS company_name,
+                    SO.user_id, RP.name AS user_name,
+                    SO.team_id, TEAM.name AS tem_name
+                    FROM sale_order SO
+                    LEFT JOIN sale_order_line SOL ON  SO.id = SOL.order_id
                     INNER JOIN
                         (SELECT origin, string_agg(number, ' | ') AS invoices, MAX(date_invoice) AS last_invoice_date
                             FROM account_invoice
@@ -39,6 +42,9 @@ class InvoiceUndelivered(models.Model):
                     INNER JOIN product_pricelist PL ON PL.id = SO.pricelist_id
                     INNER JOIN res_currency CUR ON CUR.id = PL.currency_id
                     INNER JOIN res_company C ON C.id = SOL.company_id
+                    LEFT JOIN res_users U ON U.id = SO.user_id
+                    LEFT JOIN res_partner RP ON RP.id = U.partner_id
+                    LEFT JOIN crm_team TEAM ON TEAM.id = SO.team_id
                     WHERE SOL.qty_invoiced  <> SOL.qty_delivered
                     AND SO.state NOT IN ('cancel','done')
             )""")
@@ -55,3 +61,7 @@ class InvoiceUndelivered(models.Model):
     currency_name = fields.Char("Currency", readonly=True)
     company_id = fields.Char("Company Id", readonly=True)
     company_name = fields.Char("Company", readonly=True)
+    user_id = fields.Integer("User Id", readonly=True)
+    user_name = fields.Char("Salesperson", readonly=True)
+    team_id = fields.Integer("Team Id", readonly=True)
+    team_name = fields.Char("Sales Team", readonly=True)

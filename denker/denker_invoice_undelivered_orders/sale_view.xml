@@ -20,6 +20,8 @@
                     <field name="product_price"/>
                     <field name="currency_name"/>
                     <field name="company_name" invisible='1'/>
+                    <field name="user_name"/>
+                    <field name="team_name"/>
                 </tree>
             </field>
         </record>
@@ -52,6 +54,8 @@
                     <field name="product_price"/>
                     <field name="currency_name"/>
                     <field name="company_name" />
+                    <field name="user_name"/>
+                    <field name="team_name"/>
                 </search>
             </field>
         </record>
