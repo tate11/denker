@@ -125,3 +125,4 @@ class SaleOrderLineMoney(models.Model):
     days_to_date = fields.Integer('Days to Date',compute='_compute_days_to_date')
     late = fields.Boolean('Late',compute='_compute_days_to_date')
     int_product_qty = fields.Integer('Product qty',compute='_compute_int_product_qty')
+    confirmation_date = fields.Datetime(related="order_id.confirmation_date", store=True)

@@ -18,6 +18,7 @@
                     <field name="days_to_date" invisible='1'/>
                     <field name="late" invisible='1'/>
                     <field name="date_order"/>
+                    <field name="confirmation_date"/>
                     <field name="fabrication_date"/>
                     <field name="product_delivery_date" string="Fecha de Entrega"/>
                     <field name="order_partner_id"/>
