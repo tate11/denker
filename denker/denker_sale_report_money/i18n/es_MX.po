@@ -21,6 +21,11 @@ msgid "Date Order"
 msgstr "Fecha Pedido"
 
 #. module: denker_sale_report_money
+#: model:ir.model.fields,field_description:denker_sale_report_money.field_sale_order_line_confirmation_date
+msgid "Confirmation Date"
+msgstr "Fecha Confirmación"
+
+#. module: denker_sale_report_money
 #: model:ir.model.fields,field_description:denker_sale_report_money.field_sale_order_line_days_fabrication2
 msgid "Days Fabrication"
 msgstr "Fecha Fabricación"
