@@ -195,6 +195,7 @@ class SaleOrderLine(models.Model):
     mail_qty = fields.Integer('Mail Qty', compute='_compute_mail_qty')
     date_order = fields.Date('Date Order', compute='_get_date_order', readonly=True, store=True)
     sales_team = fields.Char('Sales Team', compute='_get_sales_team', store=True)
+    #sales_team_id = fields.Many2one('Sales Team', related='order_id.team_id')
     product_family = fields.Char('Product Family', compute='_get_product_family', readonly=True, store=True)
     order_delivered = fields.Boolean('Order delivered', compute='_compute_order_delivered', readonly=True)
     commitment_date = fields.Datetime('Commitment Date', compute='_get_commitment_date')

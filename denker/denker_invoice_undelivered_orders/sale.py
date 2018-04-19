@@ -27,7 +27,7 @@ class InvoiceUndelivered(models.Model):
                     CUR.name AS currency_name,
                     SOL.company_id AS company_id, C.name AS company_name,
                     SO.user_id, RP.name AS user_name,
-                    SO.team_id, TEAM.name AS tem_name
+                    SO.team_id, TEAM.name AS team_name
                     FROM sale_order SO
                     LEFT JOIN sale_order_line SOL ON  SO.id = SOL.order_id
                     INNER JOIN
@@ -61,7 +61,7 @@ class InvoiceUndelivered(models.Model):
     currency_name = fields.Char("Currency", readonly=True)
     company_id = fields.Char("Company Id", readonly=True)
     company_name = fields.Char("Company", readonly=True)
-    user_id = fields.Integer("User Id", readonly=True)
+    user_id = fields.Many2one('res.users', string='User Id', readonly=True)
     user_name = fields.Char("Salesperson", readonly=True)
-    team_id = fields.Integer("Team Id", readonly=True)
+    team_id = fields.Many2one('crm.team', string='Sales Team', readonly=True)
     team_name = fields.Char("Sales Team", readonly=True)
