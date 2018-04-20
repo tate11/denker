@@ -1,0 +1,58 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* dnk_account_reinvoincing_rel
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-04-20 17:57+0000\n"
+"PO-Revision-Date: 2018-04-20 17:57+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: dnk_account_reinvoincing_rel
+#: model:ir.model,name:dnk_account_reinvoincing_rel.model_account_invoice
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: dnk_account_reinvoincing_rel
+#: model:ir.model.fields,help:dnk_account_reinvoincing_rel.field_account_invoice_rel_proof_of_delivery
+#: model:ir.model.fields,help:dnk_account_reinvoincing_rel.field_dnk_account_promise_to_pay_rel_proof_of_delivery
+msgid "Medium-sized image of this field. It is automatically resized, with aspect ratio preserved."
+msgstr "Imagen de tamaño medio de este campo. Se redimenciona de manera automática y se conserva la relación aspecto."
+
+#. module: dnk_account_reinvoincing_rel
+#: model:ir.model.fields,field_description:dnk_account_reinvoincing_rel.field_account_invoice_rel_proof_of_delivery
+#: model:ir.model.fields,field_description:dnk_account_reinvoincing_rel.field_dnk_account_promise_to_pay_rel_proof_of_delivery
+msgid "Proof Of Delivery:"
+msgstr "Evidencia de Entrega:"
+
+#. module: dnk_account_reinvoincing_rel
+#: model:ir.model.fields,field_description:dnk_account_reinvoincing_rel.field_account_invoice_reinvoicing_id
+#: model:ir.model.fields,field_description:dnk_account_reinvoincing_rel.field_dnk_account_promise_to_pay_reinvoicing_id
+msgid "Re-Invoicing"
+msgstr "Refacturar a:"
+
+#. module: dnk_account_reinvoincing_rel
+#: model:ir.model.fields,field_description:dnk_account_reinvoincing_rel.field_account_invoice_reinvoicing
+#: model:ir.model.fields,field_description:dnk_account_reinvoincing_rel.field_dnk_account_promise_to_pay_reinvoicing
+msgid "Re-invoicing?"
+msgstr "Es Refactura?"
+
+#. module: dnk_account_reinvoincing_rel
+#: model:ir.model.fields,help:dnk_account_reinvoincing_rel.field_account_invoice_rel_origin
+#: model:ir.model.fields,help:dnk_account_reinvoincing_rel.field_dnk_account_promise_to_pay_rel_origin
+msgid "Reference of the document that produced this invoice."
+msgstr "Referencia del documento que ha creado esta factura."
+
+#. module: dnk_account_reinvoincing_rel
+#: model:ir.model.fields,field_description:dnk_account_reinvoincing_rel.field_account_invoice_rel_origin
+#: model:ir.model.fields,field_description:dnk_account_reinvoincing_rel.field_dnk_account_promise_to_pay_rel_origin
+msgid "Source Document"
+msgstr "Documento origen"
+

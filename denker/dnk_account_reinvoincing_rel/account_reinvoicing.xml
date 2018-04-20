@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="view_dnk_account_re_invoicing_form" model="ir.ui.view">
+            <field name="name">account.invoice.reinvoicing_form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <field name="client_warehouse_id" position="after">
+                        <field name="reinvoicing" on_change="_get_bool_reinvoincing_onchange()"
+                            invisible="1"/>
+                        <field name="rel_origin"  attrs="{'invisible':[('reinvoicing', '!=', True)]}" />
+                        <field name="reinvoicing_id" options="{'no_create': True}"
+                            attrs="{'invisible':[('reinvoicing', '!=', True)]}"
+                            domain = "[('state', '=', 'cancel'), ('origin', '=', origin)]"/>
+                        <field name="rel_proof_of_delivery"  attrs="{'invisible':[('reinvoicing', '!=', True)]}"
+                            readonly="1"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

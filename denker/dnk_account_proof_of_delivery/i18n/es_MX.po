@@ -1,0 +1,51 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* dnk_account_proof_of_delivery
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-04-20 18:30+0000\n"
+"PO-Revision-Date: 2018-04-20 18:30+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: dnk_account_proof_of_delivery
+#: model:ir.ui.view,arch_db:dnk_account_proof_of_delivery.view_denker_account_proof_of_delivery
+msgid "Evidencia de Entrega"
+msgstr "Evidencia de Entrega"
+
+#. module: dnk_account_proof_of_delivery
+#: model:ir.model.fields,field_description:dnk_account_proof_of_delivery.field_account_invoice_image
+#: model:ir.model.fields,field_description:dnk_account_proof_of_delivery.field_dnk_account_promise_to_pay_image
+msgid "Image"
+msgstr "Imagen"
+
+#. module: dnk_account_proof_of_delivery
+#: model:ir.model,name:dnk_account_proof_of_delivery.model_account_invoice
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: dnk_account_proof_of_delivery
+#: model:ir.model.fields,help:dnk_account_proof_of_delivery.field_account_invoice_img_proof_of_delivery
+#: model:ir.model.fields,help:dnk_account_proof_of_delivery.field_dnk_account_promise_to_pay_img_proof_of_delivery
+msgid "Medium-sized image of this field. It is automatically resized, with aspect ratio preserved."
+msgstr "Imagen de tamaño medio de este campo. Se redimenciona de manera automática y se conserva la relación aspecto."
+
+#. module: dnk_account_proof_of_delivery
+#: model:ir.model.fields,field_description:dnk_account_proof_of_delivery.field_account_invoice_img_proof_of_delivery
+#: model:ir.model.fields,field_description:dnk_account_proof_of_delivery.field_dnk_account_promise_to_pay_img_proof_of_delivery
+msgid "Proof Of Delivery:"
+msgstr "Evidencia de Entrega:"
+
+#. module: dnk_account_proof_of_delivery
+#: model:ir.model.fields,help:dnk_account_proof_of_delivery.field_account_invoice_image
+#: model:ir.model.fields,help:dnk_account_proof_of_delivery.field_dnk_account_promise_to_pay_image
+msgid "This field holds the image for proof of delivery"
+msgstr "This field holds the image for proof of delivery"
+
