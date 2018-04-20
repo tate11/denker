@@ -10,7 +10,7 @@
                     <page string="Evidencia de Entrega" name="proof_of_delivery">
                         <group>
                             <field name="img_proof_of_delivery" widget="image" invisible="0"/>
-                            <field name="image" options="{'size': [150, 140]}" widget="image" invisible="1"/>
+                            <field name="img_tmp_proof_of_delivery" options="{'size': [150, 140]}" widget="image" invisible="1"/>
                         </group>
                     </page>
                 </page>

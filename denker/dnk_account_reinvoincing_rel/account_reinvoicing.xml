@@ -13,8 +13,8 @@
                         <field name="reinvoicing_id" options="{'no_create': True}"
                             attrs="{'invisible':[('reinvoicing', '!=', True)]}"
                             domain = "[('state', '=', 'cancel'), ('origin', '=', origin)]"/>
-                        <field name="rel_proof_of_delivery"  attrs="{'invisible':[('reinvoicing', '!=', True)]}"
-                            readonly="1"/>
+                        <!--<field name="rel_proof_of_delivery"  attrs="{'invisible':[('reinvoicing', '!=', True)]}"
+                            readonly="1"/>-->
                 </field>
             </field>
         </record>

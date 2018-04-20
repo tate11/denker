@@ -23,4 +23,4 @@ class reinvoicingRel(models.Model):
     reinvoicing = fields.Boolean('Re-invoicing?', compute='_get_bool_reinvoincing_onchange', store=True)
     rel_origin = fields.Char(related='reinvoicing_id.origin', readonly=False)
     reinvoicing_id = fields.Many2one('account.invoice', string='Re-Invoicing', ondelete='cascade')
-    rel_proof_of_delivery = fields.Binary(related='reinvoicing_id.img_proof_of_delivery')
+    #rel_proof_of_delivery = fields.Binary(related='reinvoicing_id.img_proof_of_delivery')

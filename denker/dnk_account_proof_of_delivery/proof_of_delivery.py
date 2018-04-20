@@ -20,13 +20,13 @@ class ProofOfDelivered(models.Model):
 
     @api.multi
     def _get_image(self):
-        return dict((p.id, tools.image_get_resized_images(p.image)) for p in self)
+        return dict((p.id, tools.image_get_resized_images(p.img_tmp_proof_of_delivery)) for p in self)
 
     @api.one
     def _set_image(self):
         for record in self:
-            if record.img_proof_of_delivery == record.image: continue
-            self.image = tools.image_resize_image_big(self.img_proof_of_delivery)
+            if record.img_proof_of_delivery == record.img_tmp_proof_of_delivery: continue
+            self.img_tmp_proof_of_delivery = tools.image_resize_image_big(self.img_proof_of_delivery)
             # self.image_medium = Image.open(BytesIO(self.image_medium))
             #print "#######################_______#################################"
             #print self.image
@@ -34,10 +34,10 @@ class ProofOfDelivered(models.Model):
             # self.image = Image.open(base64.dencodestring(self.image)).rotate(90, expand=not, resample=Image.BILINEAR).save(self.image)
             # self.image = cStringIO.StringIO(self.image.decode('base64'))
             # self.image = base64.encodestring(self.image)
-            self.image_medium = self.image
+            self.img_proof_of_delivery = self.img_tmp_proof_of_delivery
         return
 
-    image_temp_proof_of_delivery = fields.Binary("Image",
+    img_tmp_proof_of_delivery = fields.Binary("Image",
                      help="This field holds the image for proof of delivery", store=False)
     img_proof_of_delivery = fields.Binary(string="Proof Of Delivery:", store=True, inverse="_set_image",
                             help="Medium-sized image of this field. It is automatically " \
