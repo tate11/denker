@@ -37,7 +37,7 @@ class ProofOfDelivered(models.Model):
             self.image_medium = self.image
         return
 
-    image = fields.Binary("Image",
+    image_temp_proof_of_delivery = fields.Binary("Image",
                      help="This field holds the image for proof of delivery", store=False)
     img_proof_of_delivery = fields.Binary(string="Proof Of Delivery:", store=True, inverse="_set_image",
                             help="Medium-sized image of this field. It is automatically " \
